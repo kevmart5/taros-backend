@@ -19,8 +19,6 @@ app.use(function (req, res, next) {
 
 require('dotenv').config();
 
-console.log('process.env.DATABASE', process.env.DATABASE);
-
 mongoose
 	.connect(process.env.DATA_BASE, { useNewUrlParser: true })
 	.then(() => {
@@ -32,7 +30,8 @@ mongoose
 	});
 
 require('./src/routes/car.route.js')(app);
-// require('./src/routes/parkingSpaces.routes.js')(app);
+require('./src/routes/report.route.js')(app);
+require('./src/routes/fix.route.js')(app);
 
 app.listen(process.env.PORT, () => {
 	console.log(`Listening port: ${process.env.PORT}`);
