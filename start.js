@@ -31,6 +31,7 @@ mongoose
 
 require('./src/routes/car.route.js')(app);
 require('./src/routes/report.route.js')(app);
+require('./src/routes/fix.route.js')(app);
 
 app.listen(process.env.PORT, () => {
 	console.log(`Listening port: ${process.env.PORT}`);
