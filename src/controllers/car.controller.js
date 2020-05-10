@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 const Car = require('../models/car.model.js');
 
+exports.home = (req, res) => {
+	res.send('Cars home');
+};
+
 exports.findAll = (req, res) => {
 	Car.find()
 		.then((cars) => {
