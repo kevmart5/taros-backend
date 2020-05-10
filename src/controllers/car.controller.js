@@ -28,3 +28,29 @@ exports.findById = (req, res) => {
 			});
 		});
 };
+
+exports.createCar = (req, res) => {
+	const newCarObject = new Car(req.body);
+	newCarObject
+		.save()
+		.then((data) => {
+			res.send(newCarObject);
+		})
+		.catch((error) => {
+			res.status(500).send({
+				message: error.message,
+			});
+		});
+};
+
+exports.updateCar = (req, res) => {
+	Car.findOneAndUpdate({ _id: req.body._id }, req.body)
+		.then((data) => {
+			res.status(200).send(req.body);
+		})
+		.catch((error) => {
+			res.status(500).send({
+				message: error.message,
+			});
+		});
+};
