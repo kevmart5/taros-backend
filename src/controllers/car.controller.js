@@ -13,6 +13,14 @@ exports.findAll = (req, res) => {
 		});
 };
 
-exports.homePage = (req, res) => {
-	res.send('Im here');
+exports.findById = (req, res) => {
+	Car.findById({ _id: req.params.id })
+		.then((car) => {
+			res.send(car);
+		})
+		.catch((err) => {
+			res.status(500).send({
+				message: err.message,
+			});
+		});
 };

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const FixSchema = mongoose.Schema(
 	{
-		car: Number,
+		car: String,
 		date: String,
 		mileage: String,
 		spareParts: String,
