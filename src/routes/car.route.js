@@ -1,7 +1,6 @@
 module.exports = (app) => {
 	const car = require('../controllers/car.controller.js');
 
-	app.get('/', car.homePage);
-
 	app.get('/car', car.findAll);
+	app.get('/car/:id', car.findById);
 };

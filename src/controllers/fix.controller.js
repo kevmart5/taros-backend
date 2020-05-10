@@ -12,3 +12,17 @@ exports.findAll = (req, res) => {
 			});
 		});
 };
+
+exports.findByCar = (req, res) => {
+	const carId = req.params.id;
+	Fix.find()
+		.then((fixes) => {
+			const fixesByCar = fixes.filter((fix) => fix.car === carId);
+			res.send(fixesByCar);
+		})
+		.catch((err) => {
+			res.status(500).send({
+				message: err.message,
+			});
+		});
+};

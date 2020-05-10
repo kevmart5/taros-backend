@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const ReportSchema = mongoose.Schema(
 	{
-		car: Number,
+		car: String,
 		procedureDate: String,
 		mileage: String,
 		type: String,
