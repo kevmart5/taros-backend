@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const errorMessages = require('../constants/errorMessages');
+const successMessages = require('../constants/successMessages');
 const Car = require('../models/car.model.js');
 
 exports.home = (req, res) => {
@@ -68,6 +69,23 @@ exports.updateCar = (req, res) => {
 		.catch((error) => {
 			res.status(500).send({
 				message: error.message,
+			});
+		});
+};
+
+exports.deleteCar = (req, res) => {
+	Car.deleteOne({ _id: req.params.id })
+		.then((data) => {
+			res.status(200).send({
+				status: 'OK',
+				message: successMessages.CAR_DELETE_SUCCESS,
+				deleteCount: data.deletedCount,
+			});
+		})
+		.catch((error) => {
+			res.status(500).send({
+				message: errorMessages.CAR_DELETE_REQUEST,
+				serverMessage: error.message,
 			});
 		});
 };
