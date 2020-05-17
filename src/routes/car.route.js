@@ -6,4 +6,5 @@ module.exports = (app) => {
 	app.get('/car/:id', car.findById);
 	app.post('/car', car.createCar);
 	app.put('/car', car.updateCar);
+	app.delete('/car/:id', car.deleteCar);
 };
