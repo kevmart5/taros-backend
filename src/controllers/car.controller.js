@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const errorMessages = require('../constants/errorMessages');
 const Car = require('../models/car.model.js');
 
 exports.home = (req, res) => {
@@ -31,14 +32,30 @@ exports.findById = (req, res) => {
 
 exports.createCar = (req, res) => {
 	const newCarObject = new Car(req.body);
-	newCarObject
-		.save()
-		.then((data) => {
-			res.send(newCarObject);
+	Car.find()
+		.then((cars) => {
+			const existCar = cars.find((car) => car.plate === newCarObject.plate);
+			if (existCar) {
+				return res.status(400).json({
+					status: 'error',
+					message: errorMessages.CAR_REGISTER_ALREADY,
+				});
+			} else {
+				newCarObject
+					.save()
+					.then((data) => {
+						res.send(newCarObject);
+					})
+					.catch((error) => {
+						res.status(500).send({
+							message: error.message,
+						});
+					});
+			}
 		})
-		.catch((error) => {
+		.catch((err) => {
 			res.status(500).send({
-				message: error.message,
+				message: err.message,
 			});
 		});
 };
