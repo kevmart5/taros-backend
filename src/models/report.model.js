@@ -3,14 +3,13 @@ const mongoose = require('mongoose');
 const ReportSchema = mongoose.Schema(
 	{
 		car: String,
-		procedureDate: String,
+		procedureDate: Date,
 		mileage: String,
 		type: String,
 		brand: String,
 		quantity: String,
 		nextMileage: String,
-		nextDate: String,
-		fixes: Number,
+		nextDate: Date,
 	},
 	{
 		timestamps: true,
